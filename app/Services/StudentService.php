@@ -12,6 +12,17 @@ public function store(array $payloads)
     return Student::query()->create($payloads);
 }
 
+
+public function update($id, array $payloads)
+{
+    $student = Student::findOrFail($id); 
+    $student->update($payloads);
+    return $student;
+}
+
+
+
+
 public function ViewStudent()
 {
     

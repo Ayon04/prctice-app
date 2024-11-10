@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateRequest;
 
-
+use \resources\views;
 use App\Http\Requests\RequestService;
 use App\Http\Requests\StudentRequest;
 use Illuminate\Console\View\Components\Alert;
@@ -29,11 +29,29 @@ class StudentController extends Controller
         
            }
           catch(\Throwable $e){
-           dd($e->getMessage());
+           //dd($e->getMessage());
             return redirect()->back()->with('message_fail',"Failed Operation");
           }
         
         }
+
+
+        public function update(
+            UpdateRequest  $updateRequest, 
+            StudentService $studentService,$id
+            ){
+              try{
+                $student = $studentService->update($id,$updateRequest->validated());
+    
+                return redirect()->back()->with('updated',"Successful update Operation");
+            
+               }
+              catch(\Throwable $e){
+               //dd($e->getMessage());
+                return redirect()->back()->with('update_fail',"Failed update Operation");
+              }
+            
+            }
 
    
         public function ViewStudent()
@@ -61,9 +79,13 @@ class StudentController extends Controller
                 
             }
         }
-    
-    
 
 
+        public function update_form($id){
+
+            $student = Student::find($id);
+           return view('update',compact('student'));
+        }
+    
 
 }

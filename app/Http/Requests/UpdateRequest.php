@@ -3,12 +3,15 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Str;
-use App\Services\StudentService;
-class StudentRequest extends FormRequest {
+use Illuminate\Validation\Rule;
 
-    
-    public function authorize(): bool {
+class UpdateRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
+    {
         return true;
     }
 
@@ -16,21 +19,39 @@ class StudentRequest extends FormRequest {
      * Get the validation rules that apply to the request.
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
-    public function rules(): array {
+    */
 
-
+    public function rules(): array
+    {
+        $id = $this->route('id'); 
         return [
-            'full_name'     => 'required | string  | min:3   |regex:/^[\pL\s]+$/u  | max: 50 ',
-            'username'      => 'required |alpha_num| min:6   | max :10 ',
-            'mobile_no'     => 'required | numeric | digits:11 |regex:/(01)[0-9]{9}/ ',
-            'email'         => 'required | email   ' ,
-            'password'      => 'required | alpha_num | min:4 | max:10 '
+            'full_name'     => 'required|string|min:3|regex:/^[\pL\s]+$/u|max:50',
+            'username'      => [
+                'required',
+                'alpha_num',
+                'min:6',
+                'max:10',
+                Rule::unique('students')->ignore($id), 
+            ],
+            'mobile_no'     => [
+                'required',
+                'numeric',
+                'digits:11',
+                'regex:/^(01)[0-9]{9}/',
+                Rule::unique('students')->ignore($id), 
+            ],
+            'email'         => [
+                'required',
+                'email',
+                Rule::unique('students')->ignore($id), 
+            ],
+            'password'      => 'required|alpha_num|min:4|max:10',
         ];
     }
 
-  
-        public function messages(){
+
+
+    public function messages(){
         return [
 
             'full_name.required'     =>'Name is Required',
@@ -71,9 +92,4 @@ class StudentRequest extends FormRequest {
         ];
     }
 
-
-    }
-
-
-
-
+}

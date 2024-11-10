@@ -43,13 +43,12 @@
                 <td>{{$students->full_name}}</td>
                 <td>{{$students->mobile_no}}</td>
                 <td>{{$students->email}}</td>
-                {{-- <td><button class="btn btn-dark"> <a href ={{ url('student_edit/'. $students->student_id)}} >update</a></button></td> --}}
+                <td><button class="btn btn-dark"> <a href ={{ url("student-edit/". $students->id)}} >update</a></button></td> 
                 {{-- add button further  --}}
                 <td><button class="btn btn-danger"> <a href ={{"delete/".$students['id']}}>Delete</a></button></td></td>
               </tr>
                 
             @endforeach
-            {{-- 'delete/{{ $user->id }} --}}
         </tbody>
       </table>
 </body>

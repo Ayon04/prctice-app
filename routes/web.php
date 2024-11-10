@@ -22,7 +22,9 @@ Route::get('/signup', function () {
 //students.blade   ViewStudent
 
 Route::post('/sign_up', [StudentController::class, 'store'])->name('signup');
-
 Route::get('/student-table', [StudentController::class, 'ViewStudent']);
-
 Route::get('/delete/{id}', [StudentController::class, 'remove']);
+Route::get('/student-edit/{id}', [StudentController::class, 'update_form']);
+Route::put('/student-update/{id}', [StudentController::class, 'update']);
+
+

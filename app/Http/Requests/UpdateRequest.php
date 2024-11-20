@@ -46,6 +46,11 @@ class UpdateRequest extends FormRequest
                 Rule::unique('students')->ignore($id), 
             ],
             'password'      => 'required|alpha_num|min:4|max:10',
+
+
+            'image'     =>  'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+               
+            
         ];
     }
 

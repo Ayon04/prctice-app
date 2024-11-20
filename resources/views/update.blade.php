@@ -9,9 +9,6 @@
 
 </head>
 <body>
-
-      
-  
     <h1>Update Student</h1>
   
     @if(session()->has('updated'))
@@ -27,7 +24,7 @@
     </div>
     @endif
 
-    <form action="{{ url('student-update/' . $student->id) }}" method="POST">
+    <form action="{{ url('student-update/' . $student->id) }}" method="POST" enctype="multipart/form-data">
 
                 {{csrf_field()}}
                 @method('PUT')
@@ -81,10 +78,27 @@
             @enderror
         </div><br>
 
+        <div>
+            <label>Picture:</label>
+            <img src="{{ asset('storage/' . $student->image) }}" height="70" width="70" />
+        </div>
 
         <div>
-            <button class="btn btn-primary" type="submit"> Submit</button>
+            <label for="image">Change Picture:</label>
+           
+            <input  class="" type="file" name="image" id="image" >
+            @error('image')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
+        </div><br>
+            
+     
+       <br>
+        <div>
+            <button class="btn btn-primary" type="submit">Update</button>
         </div>
+
+
     </form>
 
 </body>

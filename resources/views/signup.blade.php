@@ -18,9 +18,9 @@
     <div class="alert alert-success">
         {{ session()->get('added') }}
     </div>
-    @endif
+    @endif    
 
-    <form action="{{route('signup')}}"  method="POST" >
+    <form action="{{route('signup')}}" enctype="multipart/form-data"  method="POST" >
 
         @csrf     
         @method('POST');
@@ -73,6 +73,23 @@
             <span class="text-danger">{{ $message }}</span>
             @enderror
         </div><br>
+
+
+
+        <div>
+            <label for="image">Picture:</label>
+           
+            <input type="file" name="image" id="image" value="{{ Request::old('image') }}">
+            @error('image')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
+        </div><br>
+
+
+
+
+
+
 
 
         <div>

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('mobile_no',length:11)->nullable(false)->unique();
             $table->string('email',length:30)->nullable(false)->unique();
             $table->string('password',length:20)->nullable(false);
+            $table->string('image')->nullable();
             //$table->timestamps();
         });
     }

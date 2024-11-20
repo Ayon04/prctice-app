@@ -32,6 +32,8 @@
             <th scope="col">Fullname</th>
             <th scope="col">Mobile</th>
             <th scope="col">Email</th>
+            <th scope="col">File Name</th>
+            <th scope="col">Image</th>
             <th scope="col">Delete/Edit</th>
           </tr>
         </thead>
@@ -43,6 +45,10 @@
                 <td>{{$students->full_name}}</td>
                 <td>{{$students->mobile_no}}</td>
                 <td>{{$students->email}}</td>
+                <td>{{$students->image}}</td>
+                <td>
+                  <img src="{{ asset('storage/' . $students->image) }}" height="70" width="70" />
+                </td> 
                 <td><button class="btn btn-dark"> <a href ={{ url("student-edit/". $students->id)}} >update</a></button></td> 
                 {{-- add button further  --}}
                 <td><button class="btn btn-danger"> <a href ={{"delete/".$students['id']}}>Delete</a></button></td></td>

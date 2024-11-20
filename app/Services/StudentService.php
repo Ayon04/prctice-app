@@ -10,6 +10,8 @@ public function store(array $payloads)
 {    
 
     return Student::query()->create($payloads);
+   
+
 }
 
 

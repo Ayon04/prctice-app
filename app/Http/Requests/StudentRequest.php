@@ -25,14 +25,20 @@ class StudentRequest extends FormRequest {
             'username'      => 'required |alpha_num| min:6   | max :10 ',
             'mobile_no'     => 'required | numeric | digits:11 |regex:/(01)[0-9]{9}/ ',
             'email'         => 'required | email   ' ,
-            'password'      => 'required | alpha_num | min:4 | max:10 '
+            'password'      => 'required | alpha_num | min:4 | max:10 ',
+            'image'         => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+
         ];
+
+        
+
+        
     }
 
   
         public function messages(){
         return [
-
+            
             'full_name.required'     =>'Name is Required',
             'full_name.alpha'        =>'Name must be alphabetic',
             'full_name.max'          =>'Name can not be more then 50 charecters',
